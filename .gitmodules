@@ -1,3 +1,6 @@
 [submodule "third_parties/clang-format-hooks"]
 	path = third_parties/clang-format-hooks
 	url = https://github.com/barisione/clang-format-hooks.git
+[submodule "third_parties/nanogui"]
+	path = third_parties/nanogui
+	url = https://github.com/wjakob/nanogui.git

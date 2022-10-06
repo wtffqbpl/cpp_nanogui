@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.22)
 
 project(cpp_nanogui)
 
+find_package(OpenGL REQUIRED)
+
+set(OPENGL_gl_LIBRARY /usr/local/lib)
+
 set(CMAKE_CXX_STANDARD 17)
 
 # Disable building extras we won't need (pure C++ project)
@@ -38,6 +42,7 @@ set_property(TARGET glfw glfw_objects nanogui PROPERTY FOLDER "dependencies")
 add_definitions(${NANOGUI_EXTRA_DEFS})
 
 # On top of adding the path to nanogui/include, you may need extras
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_parties/nanogui/include)
 include_directories(${NANOGUI_EXTRA_INCS})
 
 # Compile a target using NanoGUI
@@ -46,3 +51,6 @@ add_executable(cpp_nanogui src/main.cc)
 # Lastly, additional libraries may have been built for you.  In addition to linking
 # against NanoGUI, we need to link against those as well.
 target_link_libraries(cpp_nanogui nanogui ${NANOGUI_EXTRA_LIBS})
+target_link_libraries(cpp_nanogui "-framework Cocoa")
+target_link_libraries(cpp_nanogui "-framework OpenGL")
+target_link_libraries(cpp_nanogui "-framework IOKit")
